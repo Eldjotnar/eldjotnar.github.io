@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Magnetic Pendulum</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="../assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="../assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="../assets/css/ie8.css" /><![endif]-->
+		<script src="../assets/js/jquery.min.js"></script>
+		<script>
+            $(function(){
+                $("#contact").load("../standards/contact.html");
+                $("#follow").load("../standards/follow.html");
+            });
+        </script>
+	</head>
+	<body>
+		<div id="wrapper">
+
+		<!-- Main -->
+			<div id="main">
+				<div class="inner">
+					<h1 style="margin: 0">Magnetic Pendulum</h1>
+					<h3>14.06.2017</h3>
+					<p>I spent a semester abroad this spring in Konstanz, Germany and while I was there I took a computational physics class (Computerphysik I) with Prof. Stephan Gerlach at Universität Konstanz. One of the course’s main topics was finding numeric solutions second order differential equations, using various numeric schemes. One lab was focused on modeling chaotic systems. In my classes here in the US, we’ve always focused on oscillators like the Duffing Oscillators, or sometime a double pendulum, but in Germany I was introduced to a system that I hadn’t seen before: the magnetic pendulum. Evidently, it’s a staple in German physics courses, but hasn’t made its way across the pond if the length of wikipedia pages are any indication:</p>
+					<span class="image center"><img style="width:100%" src="images/magnet_wiki.png" alt="" /></span><br />
+					<p>The system is quite simple: a steel weight is suspended by a string over a set of (usually 3) magnets. The magnetic pendulum is highly chaotic, meaning that a small change in the weight’s starting position plays a large role in determining which magnet it will end over. The task put in front of the class was to model this system. </p>
+					<p>We assume that the mass moves only in the x-y plane. We have a magnetic force of the form:</p>
+					<span class="image center"><img width="200px" src="images/fm.png" alt="" /></span>
+					<p>and assume a damping and restoring force:</p>
+					<span class="image center"><img width="100px" src="images/ff.png" alt="" /></span>
+					<span class="image center"><img width="100px" src="images/fr.png" alt="" /></span>
+					<p>So we can write the equation of motion for the mass as a 2nd order differential equation, which we can solve numerically.</p>
+					<span class="image center"><img width="300px" src="images/eom.png" alt="" /></span>
+					<p>I elected to solve this numerically using the leapfrog method, which seperates the 2nd order DE to 2 first order ODEs, which can be solved with finite differences, in this case a position, x, and a velocity, v. The idea is that x is sampled at t = 0, Δt, 2Δt, ... nΔt, whereas v is sampled at t = 1/2Δt, 3/2Δt, ... n/2Δt, and they "play leapfrog" over each other.</p>
+					<span class="image center"><img width="300px" src="images/leapfrog.gif" alt="" /></span>
+					<p>Using 3 magnets centered around a 1m square, we can see the path that the magnet takes, based on the starting location of the magnet. For instance if we start at (1,1) we get the following output.</p>
+					<span class="image center"><img width="300px" src="https://i.imgur.com/XGXaLH7.gif" alt="" /></span>
+					<p>It is easy to see then that this starting location leads to the mass ending up over the 2nd magnet. If we iterate over all possible starting locations and calculate which magnet the mass will end on top of. So I wrote a script which takes the starting position and calculates which magnet it ends on and assign it a specific color.
+					<span class="image fit"><img  src="images/magnet_colors.png" alt="" /></span>
+					<p>This isn't as high resolution as I would like, but gnuplot makes it difficult to generate really smooth images of this sort. As shown, the system is incredibly chaotic and depends heavily on starting location of the mass.</p>
+					<br />
+					<form action="../">
+						<input type="submit" value="Go Back" />
+					</form>
+				</div>
+			</div>
+
+			<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<section id="contact"></section>
+					<section id="follow"></section>
+					<ul class="copyright">
+						<li>&copy; A. Raduege. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Scanning Tunneling Microscope</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="../assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="../assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="../assets/css/ie8.css" /><![endif]-->
+		<script src="../assets/js/jquery.min.js"></script>
+		<script>
+            $(function(){
+                $("#contact").load("../standards/contact.html");
+                $("#follow").load("../standards/follow.html");
+            });
+        </script>
+	</head>
+	<body>
+		<div id="wrapper">
+
+		<!-- Main -->
+			<div id="main">
+				<div class="inner">
+					<h1 style="margin:0">Scanning Tunneling Microscope</h1>
+					<h3>28.12.2017</h3>
+					<span class="image right"><img style="max-height: 300px; width: auto" src="images/micro.jpeg" alt="" /></span>
+					<p>During my semester in Germany of Spring 2017, I had the opportunity to take a class on Advanced Experimental Methods in Materials Science at the Max Planck Institut für Festkörperforschung in Stuttgart. There we discussed various microscopy techniques like Atomic Force Microscopy (AFM) and Scanning Tunneling Microscopy (STM), and we were fortunate enough to use some physical machines in their advanced lab (STM pictured to the right).</p>
+					<p>I was immediately hooked on STMs - any microscope with atomic resolution is awesome to begin with, but I was fascinated by the simplicity. After talking briefly with the professor, he suggested that I take the time to design and build my own microscope, using parts available to the average hobbyist. The first step was to understand exactly how an STM works.</p>
+					<p>I like this gif for explaining how an STM works, but here is my additional input: very loosely put, an STM works by bringing an atomically sharp tip (having only one atom at the tip) very very close to the surface we want to examine. A voltage bias is induced between the sample and the tip, such that electrons break off from the surface and tunnel up to the tip. We can measure the amount of current coming from the tip, and the tunneling current increases exponentially with tip distance. The microscope “drags” the tip across the surface we’re scanning and so as the tip gets close to an atom, the tunneling current increases. Since we know where the tip is located and the tunneling current at that point, we can use that information to build an image of what the surface looks like. An STM can also operate in “constant current mode” where the tip moves along the z-axis to try and maintain a constant current coming off of the sample. This is sometimes advantageous as it makes it harder for the tip to crash into things. </p>
+					<h2>The Scanner Head</h2>
+					<p>The scanner head is based on John Alexander’s <a href="http://web.archive.org/web/20130927064954/http://www.geocities.com/spm_stm/Disk_Scanner_Exp.html">low cost STM design</a> which features a piezo-electric buzzer to control the movement of the tip. The buzzer is separated into four quadrants and the scanner tip is mounted at the intersection. By feeding a set of combined control signals to different buzzer quadrants, we can control how the tip moves.</p>
+					<span class="image center"><img src="images/stm/scan_head.png" alt="" /></span>
+					<span class="image center"><img src="images/stm/head_movement.png" alt="" /></span>
+					<p>The tip itself is formed from a tungsten wire (which can be purchased from amazon) and chemically etched to be atomically sharp. The tungsten wire is mounted inside of a standard I2C pin, which is superglued to an empty pen cartridge (since plastic is non-conductive) and cut down to size. Pretty low tech, but simple.</p>
+					<h2>The Physical Microscope</h2>
+					<p>The microscope body is composed of two 2” x 2.5” x 1/2” aluminum blocks, with a large hole bored through the top block, where the piezo and scanner tip can be attached. For the course approach, there are three holes bored for <a href="https://www.mcmaster.com/#97424a590/=11pmnis">ultra-fine pitch screws</a> (and <a href="https://www.mcmaster.com/#98625a960/=11pmoim">associated brushings</a>). The two front holes (those closest to the scanner head) allow for bringing the scanner tip visually close to the sample surface, likely with the aid of a magnifying glass. The rear screw is offset to allow for fine approach, with a light indicating when tunneling current has been established. This rear screw could be motorized, but I am both cheap and lazy. </p>
+					<span class="image center"><img src="images/stm/body.png" alt="" /></span>
+					<p>The sample we are examining needs to be isolated from the body of the microscope to avoid picking up stray currents, so we attached it to something with very high resistance like a piece of glass. The sample is attached to a plate of copper (so that we can induce the bias) with copper tape, which is then mounted on the glass, which is in turn glued to the body. This would make it slightly difficult to change samples, but I don’t imagine changing samples very often for a project like this. Finally, two springs attach the top plate to the bottom plate to ensure an accurate measurement. The assembly process for the microscope might look something like this:</p>
+					<span class="image center"><img style="max-height:300px" src="https://i.imgur.com/36iRAQG.gif" alt="" /></span>
+					<h2>Electronics</h2>
+					<p>For this project, I took a lot of inspiration from <a href="https://dberard.com/home-built-stm/electronics/">Dan Berard and his STM design</a>. I certainly do not have a degree in Electrial Engineering and cannot begin to describe the complexities of signal processing that go into STM design, so for the electronics, I used Dan's designs. He does an excellent job of explaining why he made the decisions he did and provides great resources. I went through and sourced the parts that he used to make his circuit so that less experienced people like me could still build an STM at home and feel confident in what they were ordering.</p>
+					<h2>Error Reduction</h2>
+					<span class="image left"><img src="images/stm/system.png" alt="" /></span>
+					<p>Obviously a machine that measures a few electrons at a time is highly susceptible to noise and other errors. Most lab STMs are run in a vacuum and at extremely low temperatures. I have neither at my disposal, so it is imperative that I take as many precautions as possible to generate acceptable (and accurate) images.</p>
+					<p>Firstly, we remove electromagnetic noise, such as 60Hz noise. This is easily accomplished with a Faraday cage, and since I am cheap and lazy, a large soup can makes an excellent Faraday cage. Then vibration: the STM will be mounted on a sheet of polyethylene foam, which is not only an excellent dampener, but also an effective insulator. Just to be absolutely positive, we suspend a heavy metal plate from 3 high-stiffness springs, to reduce low frequency oscillations. This entire contraption is placed inside a soundproof box to further minimize air vibrations. It is also imperative that the power supply is electromagnetically shielded from the main circuit, to prevent other interference. </p>
+					<h2>Bill of Materials</h2>
+					<p>While I was working on this project, one of my biggest complaints about other people's designs was that they never gave exact products and prices. I find this ridiculous and have provided a thorough bill of materials for my STM.</p>
+					<table>
+						<tr>
+							<th>Item</th>
+							<th>Quantity</th>
+							<th>(Total) Cost</th>
+							<th>Size</th>
+							<th>Purpose</th>
+							<th>Source</th>
+						</tr>
+						<tr>
+							<td>Piezoelectric Buzzer</td>
+							<td>1</td>
+							<td>$0.61</td>
+							<td>20mm</td>
+							<td>Scanner</td>
+							<td><a href="https://www.digikey.com/products/en?keywords=490-7711-ND">DigiKey</a></td>
+						</tr>
+							<td>Tungsten Wire</td>
+							<td>1</td>
+							<td>$12.95</td>
+							<td>.25mm x 4.88m</td>
+							<td>Scanning Tip</td>
+							<td><a href="https://www.amazon.com/Tungsten-99-95-0098-Solution-Materials/dp/B00E47R68Y/ref=sr_1_3?s=industrial&ie=UTF8&qid=1506953627&sr=1-3&keywords=tungsten+wire">Amazon</a></th>
+						</tr>
+ 						<tr>
+ 							<td>Aluminum Bar</td>
+ 							<td>1</td>
+ 							<td>$6.43</td>
+ 							<td>0.5"x2"x10"</td>
+ 							<td>Microscope Body</td>
+ 							<td><a href="http://www.onlinemetals.com/merchant.cfm?pid=1168&step=4&showunits=inches&id=997&top_cat=60">Online Metals</a></td>
+ 						</tr>
+ 						<tr>
+ 							<td>Ultra-Fine Screw Brushing</td>
+ 							<td>3</td>
+ 							<td>$24.87</td>
+ 							<td>1/4"-80</td>
+ 							<td>Course Approach</td>
+ 							<td><a href="https://www.mcmaster.com/#98625a960/=11pmoim">McMaster Carr</a></td>
+ 						</tr>
+ 						<tr>
+ 							<td>Ultra-Fine Pitch Screws</td>
+ 							<td>3</td>
+ 							<td>$24.51</td>
+ 							<td>1/4"-80</td>
+ 							<td>Course Approach</td>
+ 							<td><a href="https://www.mcmaster.com/#97424a590/=11pmnis">McMaster Carr</a></td>
+ 						</tr>
+ 						<tr>
+ 							<td>Copper Tape</td>
+ 							<td>1</td>
+ 							<td>$5.99</td>
+ 							<td>1/4"x22yrds</td>
+ 							<td>Sample Mounting</td>
+ 							<td><a href="https://www.amazon.com/Bullet-Face-Double-sided-Conductive-Electrical/dp/B01MR5DSCM/ref=sr_1_3?ie=UTF8&qid=1506955685&sr=8-3&keywords=copper+tape">Amazon</a></td>
+ 						</tr>
+ 						<tr>
+ 							<td>Polyethelane Sheeting</td>
+ 							<td>1</td>
+ 							<td>$3.23</td>
+ 							<td>12"x12"</td>
+ 							<td>Vibration Isolation</td>
+ 							<td><a href="https://www.mcmaster.com/#standard-foam-sheets/=1akegm9">McMaster Carr</a></td>
+ 						</tr>
+ 						<tr>
+ 							<td>Steel Rounds</td>
+ 							<td>3</td>
+ 							<td>$4.50</td>
+ 							<td>5" diameter</td>
+ 							<td>Vibration Isolation</td>
+ 							<td><a href="https://www.walmart.com/ip/CAP-Barbell-1-Cast-Iron-Weight-Plate-Black-Single/37466165?wmlspartner=wlpa&adid=22222222227025806578&wl0=&wl1=g&wl2=c&wl3=42973262552&wl4=pla-81465325352&wl5=9019509&wl6=&wl7=&wl8=&wl9=pla&wl10=8175035&wl11=online&wl12=37466165&wl13=&veh=sem">Walmart</a></td>
+ 						</tr>
+ 						<tr>
+ 							<td>Extension Springs</td>
+ 							<td>3</td>
+ 							<td>$15.27</td>
+ 							<td>10"lg</td>
+ 							<td>Vibration Isolation</td>
+ 							<td><a href="https://www.mcmaster.com/#extension-springs/=1akfrmt">McMaster Carr</a></td>
+ 						</tr>
+ 						<tr>
+ 							<td>Extension Springs</td>
+ 							<td>2</td>
+ 							<td>$7.55</td>
+ 							<td>1/2"</td>
+ 							<td>Microscope Body</td>
+ 							<td><a href="https://www.mcmaster.com/#extension-springs/=1akfrmt">McMaster Carr</a></td>
+ 						</tr>
+ 						<tr>
+ 							<td>PCB</td>
+ 							<td>1</td>
+ 							<td>$44.95</td>
+ 							<td>8cm x 8cm</td>
+ 							<td>Circuit Board</td>
+ 							<td><a href="dirtypcbs.com">DirtyPCB</a></td>
+ 						</tr>
+					</table>
+					<p>The electronics parts list is available <a href="images/stm/electronics_bom.pdf">here</a> as a pdf.</p>
+					<p>Including shipping, the total cost of the entire project is $236.18, which I think is an excellent price for such a nifty piece of technology. Unfortunately, as a broke college student, I did not have the funds to build the physical item, but figured that it would be beneficial to post the results of my labor anyways. If you do happen to build an STM, I would love to hear about it!</p>
+					<br />
+					<form action="../">
+						<input type="submit" value="Go Back" />
+					</form>
+				</div>
+			</div>
+
+			<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<section id="contact"></section>
+					<section id="follow"></section>
+					<ul class="copyright">
+						<li>&copy; A. Raduege. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
