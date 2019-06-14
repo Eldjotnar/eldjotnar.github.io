@@ -1,127 +1,98 @@
-<!DOCTYPE HTML>
-<!--
-	Phantom by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Andreas Raduege</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-		<script src="assets/js/jquery.min.js"></script>
-		<script>
-            $(function(){
-                $("#contact").load("standards/contact.html");
-                $("#follow").load("standards/follow.html");
-            });
-        </script>
-	</head>
-	<body>
-		<section id="banner">
-			<h1>ANDREAS RADUEGE</h1>
-			<h2>Physicist. Programmer. Huge Nerd.</h2>
-		</section>
-		<div id="wrapper">
-			<!-- Main -->
-			<div id="main">
-				<div class="inner">
-					<header>
-						<h1>Sometimes I do cool things.</h1>
-						<p>Current student at St. Olaf College in Northfield MN. Studying Physics, Computer Science, and German Studies.</p>
-					</header>
-					<section class="tiles">
-						<article class="style1">
-							<span class="image">
-								<img src="images/stm.png" alt="" />
-							</span>
-							<a href="projects/stm.html">
-								<h2>STM</h2>
-								<div class="content">
-									<p>Designing and building a scanning tunneling microscope.</p>
-								</div>
-							</a>
-						</article>
-						<article class="style2">
-							<span class="image">
-								<img src="images/magnet_thumb.png" alt="" />
-							</span>
-							<a href="projects/pendulum.html">
-								<h2>Magnetic Pendulum</h2>
-								<div class="content">
-									<p>Modeling a chaotic system</p>
-								</div>
-							</a>
-						</article>
-						<article class="style3">
-							<span class="image">
-								<img src="images/piano.png" alt="" />
-							</span>
-							<a href="projects/piano.html">
-								<h2>Piano Speech Synthesis</h2>
-								<div class="content">
-									<p>Teaching a piano to produce speech</p>
-								</div>
-							</a>
-						</article>
-						<article class="style4">
-							<span class="image">
-								<img src="images/dew_patterns.png" alt="" />
-							</span>
-							<a href="projects/dew.html">
-								<h2>Geometric Dew Decay</h2>
-								<div class="content">
-									<p>Mathematically modelling geometric dew decay patterns</p>
-								</div>
-							</a>
-						</article>
-						<article class="style5">
-							<span class="image">
-								<img src="images/bert.png" alt="" />
-							</span>
-							<a href="projects/pidrone.html">
-								<h2>Raspberry Pi Drone</h2>
-								<div class="content">
-									<p>Building an autonomous drone that uses a RaspPi as the flight controller</p>
-								</div>
-							</a>
-						</article>
-						<article class="style6">
-							<span class="image">
-								<img src="images/umbri.png" alt="" />
-							</span>
-							<a href="projects/umbri.html">
-								<h2>Umbri</h2>
-								<div class="content">
-									<p>A simple exploration of video game design</p>
-								</div>
-							</a>
-						</article>
-					</section>
-				</div>
-			</div>
-
-			<!-- Footer -->
-			<footer id="footer">
-				<div class="inner">
-					<section id="contact"></section>
-					<section id="follow"></section>
-					<ul class="copyright">
-						<li>&copy; A. Raduege. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-					</ul>
-				</div>
-			</footer>
-		</div>
-
-		<!-- Scripts -->
-		<script src="assets/js/jquery.min.js"></script>
-		<script src="assets/js/skel.min.js"></script>
-		<script src="assets/js/util.js"></script>
-		<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-		<script src="assets/js/main.js"></script>
-	</body>
-</html>
+<!DOCTYPE html>
+<head>
+  <title>Andreas Raduege</title>
+  <link rel='stylesheet' type='text/css' href='./css/main.css'>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Playfair+Display:900&display=swap" rel="stylesheet">
+</head>
+<header>
+  <div class="navBlock">
+    <img src="assets/images/logo.png" class="logo" />
+    <div class="navOptions">
+      <h3><a href="#about">About</a></h3>
+      <h3><a href="#portfolio">Portfolio</a></h3>
+      <h3><a href="#contact">Contact</a></h3>
+    </div>
+    <img src="assets/images/profile.jpg" class="picture" />
+  </div>
+  <div class="titleBlock">
+    <h1>Developer & Designer</h1>
+    <h2>Hello, my name is Andreas and I love to write beautiful code.</h2>
+  </div>
+  <div class="headerOverlay"></div>
+</header>
+<body>
+  <section id="portfolio" class="portfolio">
+    <h3>Check out my latest work</h3>
+    <section class="project">
+      <img src="assets/images/bibulous_logo.png" alt="bibulous logo" class="project-picture" />
+      <div class="project-description">
+        <h2>bibulous</h2>
+        <p>bibulous is an app that helps home bartenders find cocktails they can make with the bottles they already own.</p>
+        <p>A greek word, meaning "to enjoy consuming alcohol", bibulous helps you do just that! Our extensive cocktail database
+          includes everything from simple Gin and Tonics, to cocktails with obscure liquors that might otherwise go unnoticed.
+        </p>
+        <p>Purchase the app for $2.99 on the <a href="https://apps.apple.com/us/app/bibulous/id1441923349">App Store</a> or <a href="https://play.google.com/store/apps/details?id=com.bibulous">Google Play Store</a> now!</p>
+      </div>
+    </section>
+    <section class="project">
+      <img src="assets/images/gnomi_logo.png" alt="gnomi logo" class="project-picture">
+      <div class="project-description">
+        <h2>gnomi</h2>
+        <p>
+          gnomi is a news aggregator app for independent readers who are frustrated with the polarization
+          in the media.
+        </p>
+        <p>
+          Unlike other news apps, gnomi uses a combination of artificial intelligence and human graders to analyze, review and grade news articles based on the respective level of bias. gnomi's proprietary grading method, called SlantID, ranges from L5-R5 (with L1/R1 being the least biased). 
+          By revealing an article’s “slant,” users can educate themselves on both sides of every story. The tap-to-flip features allows users to read an article from one side and easily flip to an article on the same topic, but from the other side.          
+        </p>
+        <p>Check it out for free on the <a href="https://apps.apple.com/us/app/gnomi/id1396264496">App Store</a> or <a href="https://play.google.com/store/apps/details?id=com.gnomi&hl=en_US">Google Play Store</a>!</p>
+      </div>
+    </section>
+    <section class="project">
+      <img src="assets/images/peckish_logo.png" alt="peckish logo" class="project-picture">
+      <div class="project-description">
+        <h2>Peckish</h2>
+        <p>Peckish is an app for finding recipes that use ingredients already in your pantry.</p>
+        <p>
+          I developed this app with a team of 3 other developers in January of 2018 for a class project.
+          It was capable of searching for recipes that consisted primarily of things you already had on hand,
+          generating a grocery list for things you needed, scanning product bar codes to automatically extract nutrional
+          information, and storing notes about the recipes you did make. We didn't release it since the recipes
+          in the database were collected from a web scraper and we couldn't be sure that we had legal use.
+        </p>
+        <p>Take a look at the source code on <a href="https://github.com/Eldjotnar/peckish">Github</a>.</p>
+      </div>
+    </section>
+  </section>
+  <section id="about" class="about">
+    <div class="aboutBlock">
+      <img src="assets/images/profile.jpg" class="aboutPicture" />
+      <p>
+        I am a full-stack developer and designer, currently working out of Minneapolis MN.
+        I specialize in mobile development using React Native and Serverless backend architecture,
+        although I occasionally prefer WebAPI.
+        In my free time, I enjoy swing dancing and making craft cocktails.</p>
+      <h3>Technologies I work with:</h3>
+      <ul>
+        <li>React.js</li>
+        <li>React Native</li>
+        <li>Node.js</li>
+        <li>AWS API Gateway</li>
+        <li>AWS Lambda</li>
+        <li>AWS DynamoDB</li>
+        <li>SQL (SQL Server, PostgreSQL, MySQL)</li>
+        <li>MongoDB</li>
+        <li>Serverless Framework</li>
+        <li>ASP.NET & WebAPI</li>
+      </ul>
+    </div>
+  </section>
+  <section id="contact" class="contact">
+    <div class="contactBlock">
+      <h3>Send me an email!</h3>
+      <h1 id="mail"></h1>
+    </div>
+  </section>
+  <script src="js/main.js"></script>
+</body>
